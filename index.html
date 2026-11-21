@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Connect the apps you already use and automate recurring work with EMERQE, an AI automation platform for creators and businesses.">
+<title>EMERQE — Make time for what matters</title>
+<script>
+  try {
+    const theme = localStorage.getItem('emerqe-theme');
+    if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+  } catch {}
+</script>
+<style>
+:root{color-scheme:light;--bg:#f5f5f7;--surface:#fff;--ink:#1d1d1f;--muted:#565c69;--line:#e3e6ec;--blue:#0071e3;--link:#005fbf;--wash:#eaf3ff;--hero:#e6effc;--shadow:0 22px 60px #233e6a19;--nav:#ffffffdf;--good:#176446;--good-bg:#e8f6ef}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#131314;--surface:#1c1c1e;--ink:#f5f5f7;--muted:#afb1bc;--line:#34363e;--blue:#2997ff;--link:#70b7ff;--wash:#172a40;--hero:#172335;--shadow:0 22px 60px #0006;--nav:#131314e6;--good:#92d4af;--good-bg:#18382c}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#131314;--surface:#1c1c1e;--ink:#f5f5f7;--muted:#afb1bc;--line:#34363e;--blue:#2997ff;--link:#70b7ff;--wash:#172a40;--hero:#172335;--shadow:0 22px 60px #0006;--nav:#131314e6;--good:#92d4af;--good-bg:#18382c}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body,.header,.panel,.card,.integration,.canvas,.flow,.step,.cta,.plans article,dialog{transition:background-color .35s,color .35s,border-color .35s}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{line-height:1.04;letter-spacing:-.045em}
+h1{font-size:clamp(3rem,6.2vw,6rem);font-weight:750}
+h2{font-size:clamp(2.35rem,5vw,4.5rem);font-weight:730}
+h3{font-size:1.4rem}
+p{color:var(--muted)}
+.wrap{width:min(1200px,calc(100% - 64px));margin-inline:auto}
+.skip{position:fixed;top:8px;left:8px;z-index:20;translate:0 -150%}.skip:focus{translate:0}
+.header{position:sticky;top:0;z-index:10;background:var(--nav);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+.nav{min-height:72px;display:flex;gap:24px;align-items:center;justify-content:space-between}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.075em;white-space:nowrap}
+.mark{display:inline-grid;place-items:center;width:32px;height:32px;flex:none;border-radius:9px;background:#0071e3;color:white;font-size:23px;line-height:1}
+.links,.nav-actions,.actions{display:flex;align-items:center;gap:26px}
+.links a,.login{font-size:.9rem;font-weight:600;color:var(--muted)}
+.links a:hover,.login:hover,.footer a:hover{color:var(--link)}
+.button{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:12px 20px;min-height:46px;border:1px solid transparent;border-radius:10px;background:#0071e3;color:#fff;font-weight:650;line-height:1.2;transition:transform .2s,background .2s,box-shadow .2s}
+.button:hover{transform:translateY(-2px);box-shadow:0 8px 20px #0071e32e;background:#005fc3}
+.button.secondary{color:var(--ink);background:var(--surface);border-color:var(--line)}
+:root[data-theme=dark] .button:not(.secondary){background:#2997ff;color:#101417}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .button:not(.secondary){background:#2997ff;color:#101417}}
+.small{min-height:38px;padding:8px 14px;font-size:.875rem}
+.icon-button,.login{border:0;background:none;padding:0}
+.icon-button{width:40px;height:40px;display:grid;place-items:center;border-radius:9px}
+.icon-button:hover{background:var(--wash)}
+.icon{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;flex:none}
+.menu,.mobile-login{display:none}
+.hero{overflow:hidden}
+.hero-inner{min-height:596px;display:grid;grid-template-columns:.93fr 1.07fr;align-items:center;gap:48px;padding-block:64px}
+.kicker{font-size:.75rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--link);margin-bottom:18px}
+.hero h1 span{display:block;color:var(--link)}
+.hero-copy>p:not(.kicker){font-size:1.125rem;max-width:420px;margin-top:24px}
+.actions{gap:12px;flex-wrap:wrap;margin-top:29px}
+.canvas{min-width:0;min-height:460px;border:1px solid color-mix(in srgb,var(--blue) 14%,var(--line));border-radius:24px;padding:32px;display:grid;place-items:center;background-color:var(--hero);background-image:radial-gradient(circle,color-mix(in srgb,var(--blue) 21%,transparent) 1px,transparent 1px);background-size:17px 17px;position:relative;isolation:isolate}
+.canvas::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse at center,var(--hero) 18%,transparent 74%);z-index:-1}
+.panel{width:100%;max-width:455px;background:var(--surface);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);overflow:hidden;transform:translateY(var(--drift,0px))}
+.panel-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line);font-size:.8rem;font-weight:650}
+.panel-top .mark{width:21px;height:21px;border-radius:6px;font-size:15px;margin-right:7px}
+.panel-top>span:first-child{display:flex;align-items:center}
+.sample{font-size:.75rem;color:var(--muted);white-space:nowrap}
+.panel-body{padding:18px}
+.panel-caption{font-size:.78rem;color:var(--muted);margin-bottom:5px}
+.panel-title{font-size:1.32rem;margin-bottom:15px}
+.flow{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg);border:1px solid var(--line);border-radius:9px;font-size:.82rem;font-weight:680}
+.flow .app-icon{width:30px;height:30px;border-radius:7px}
+.flow .app-icon svg{width:17px;height:17px}
+.flow small{display:block;color:var(--muted);font-size:.72rem;font-weight:500}
+.connector{height:12px;width:1px;margin-left:26px;background:var(--blue);opacity:.65}
+.panel-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:15px}
+.run-status{font-size:.75rem;color:var(--good);background:var(--good-bg);border-radius:20px;padding:4px 9px}
+.flow.running{animation:highlight .65s ease both}.flow.running:nth-of-type(3){animation-delay:.22s}.flow.running:nth-of-type(5){animation-delay:.44s}
+@keyframes highlight{50%{border-color:var(--blue);background:var(--wash);transform:translateX(3px)}}
+.app-icon{display:grid;place-items:center;width:43px;height:43px;border-radius:11px;background:var(--wash);color:var(--link);flex:none}
+.app-icon svg{width:25px;height:25px}
+.integrations{background:var(--surface);border-block:1px solid var(--line);padding-block:36px;text-align:center}
+.integrations p{font-size:.875rem;font-weight:650;margin-bottom:19px}
+.app-grid{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.integration{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:11px;background:var(--bg);padding:7px 14px;font-size:.9rem;font-weight:650}
+.integration .app-icon{width:28px;height:28px;background:none}
+.integration .app-icon svg{width:22px;height:22px}
+.integration:hover{border-color:var(--blue);transform:translateY(-3px)}
+.app-grid.reveal.seen .integration{animation:arrive .65s both;animation-delay:calc(var(--i) * 95ms)}
+@keyframes arrive{from{opacity:0;translate:0 9px}to{opacity:1;translate:0}}
+.section{padding-block:100px}
+.heading{max-width:720px;margin-bottom:38px}
+.heading>p:not(.kicker){font-size:1.1rem;margin-top:16px}
+.feature-grid,.plans,.steps,.proof-grid{display:grid;gap:16px}
+.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card,.plans article,.step,.proof-grid article{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:25px;transition:background .35s,border-color .25s,transform .25s,box-shadow .25s}
+.card:hover,.plans article:hover,.step:hover{border-color:color-mix(in srgb,var(--blue) 55%,var(--line));transform:translateY(-4px);box-shadow:var(--shadow)}
+.feature-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:10px}
+.audience{color:var(--muted);font-size:.78rem;font-weight:650}
+.card p,.step p{margin-top:10px}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.steps,.plans{grid-template-columns:repeat(3,minmax(0,1fr))}
+.step{background:var(--bg)}
+.step .app-icon{margin-bottom:20px}
+.proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.proof-grid article{background:var(--wash)}
+.metric{display:block;color:var(--link);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:750;letter-spacing:-.075em;line-height:1;margin-bottom:12px}
+blockquote{margin:16px 0 0;font-size:1.08rem}
+cite{display:block;font-size:.85rem;color:var(--muted);font-style:normal;margin-top:8px}
+.plans article{display:flex;flex-direction:column;gap:14px}
+.plans .featured{border-color:var(--blue)}
+.price{font-size:2.4rem;font-weight:750;letter-spacing:-.06em;line-height:1.2}
+.price small{font-size:.9rem;font-weight:500;letter-spacing:0;color:var(--muted)}
+.plans ul{padding-left:20px;margin:0 0 9px;color:var(--muted)}
+.plans li+li{margin-top:5px}
+.plans .button{margin-top:auto}
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px}
+details{border-bottom:1px solid var(--line);padding:17px 0}
+details:first-child{border-top:1px solid var(--line)}
+summary{cursor:pointer;font-weight:680;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.3rem;color:var(--link)}
+details[open] summary::after{content:"−"}
+details p{margin-top:10px}
+.cta{text-align:center;border-radius:22px;background:var(--wash);padding:58px 22px;margin-bottom:80px}
+.cta h2{font-size:clamp(2.4rem,5vw,4.25rem)}
+.cta p{margin:15px auto 23px}
+.footer{padding:32px 0;border-top:1px solid var(--line)}
+.footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer p,.footer a:not(.brand){font-size:.875rem;color:var(--muted)}
+.footer-links{display:flex;gap:15px;flex-wrap:wrap}
+dialog{max-width:min(450px,calc(100% - 32px));border:1px solid var(--line);border-radius:18px;padding:26px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+dialog::backdrop{background:#10192b88;backdrop-filter:blur(4px)}
+.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+dialog p{margin-bottom:18px}
+.motion .reveal:not(.seen):not(:focus-within){opacity:0;transform:translateY(21px)}
+.reveal{transition:transform .65s cubic-bezier(.2,.7,.2,1),opacity .65s}
+.hero-copy{animation:arrive .7s both}.canvas{animation:arrive .8s .12s both}
+@media(max-width:900px){.nav{gap:15px}.nav-actions,.links{gap:13px}.hero-inner{gap:26px;min-height:unset}.canvas{padding:20px;min-height:410px}}
+@media(max-width:730px){.wrap{width:calc(100% - 36px)}.nav{min-height:62px}.nav-actions{gap:6px}.menu{display:grid}.nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface);padding:18px;border-bottom:1px solid var(--line);flex-wrap:wrap;justify-content:center;gap:18px}.nav .links.open{display:flex}.nav .nav-actions .login{display:none}.nav .mobile-login{display:inline-block}.hero-inner{grid-template-columns:1fr;padding-block:48px 34px;gap:32px}.hero-copy>p:not(.kicker){margin-top:17px}.canvas{min-height:370px}.section{padding-block:64px}.faq,.plans{grid-template-columns:1fr}.faq{gap:0}.faq .heading{margin-bottom:25px}.cta{margin-bottom:55px}}
+@media(max-width:470px){.brand{font-size:.9rem;gap:6px}.nav-actions .button{padding-inline:9px}.nav-actions .icon-button{width:34px}.canvas{padding:12px;min-height:344px}.panel-body{padding:13px}.feature-grid,.steps,.proof-grid{grid-template-columns:1fr}.card,.plans article,.step,.proof-grid article{padding:20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.panel{transform:none}.motion .reveal:not(.seen){opacity:1;transform:none}}
+</style>
+</head>
+<body id="top">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="gmail" viewBox="0 0 24 24"><path fill="#4285f4" d="M2 7v13h4V10z"/><path fill="#34a853" d="M18 10v10h4V7z"/><path fill="#ea4335" d="M6 5l6 4.5L18 5v5l-6 4.5L6 10z"/><path fill="#c5221f" d="M2 6a2 2 0 0 1 3-1.7L6 5v5L2 7z"/><path fill="#fbbc04" d="M22 6a2 2 0 0 0-3-1.7L18 5v5l4-3z"/></symbol>
+  <symbol id="youtube" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="5" fill="#f00000"/><path fill="white" d="m10 8 6 4-6 4z"/></symbol>
+  <symbol id="instagram" viewBox="0 0 24 24"><g fill="none" stroke="#d92d74" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.7" r="1.2" fill="#d92d74"/></symbol>
+  <symbol id="outlook" viewBox="0 0 24 24"><rect x="7" y="3" width="14" height="16" rx="2" fill="#0078d4"/><path fill="#50b7f3" d="M9 7h10v6H9z"/><path fill="#168be3" d="M8 12h15v8a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1z"/><path fill="#65c4fb" d="m8 12 7.5 4.5L23 12z"/><rect x="1" y="6" width="12" height="12" rx="2" fill="#0665b5"/><circle cx="7" cy="12" r="2.65" fill="none" stroke="white" stroke-width="1.4"/></symbol>
+  <symbol id="spark" viewBox="0 0 24 24"><path d="M12 2c0 6-4 10-10 10 6 0 10 4 10 10 0-6 4-10 10-10-6 0-10-4-10-10Z"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="video" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m10 8 6 4-6 4z"/></symbol>
+  <symbol id="chart" viewBox="0 0 24 24"><path d="M4 4v16h16M8 15l4-4 3 2 5-6"/></symbol>
+  <symbol id="link" viewBox="0 0 24 24"><path d="m10 8 2-2a4 4 0 1 1 6 6l-2 2m-2 2-2 2a4 4 0 1 1-6-6l2-2m1 5 6-6"/></symbol>
+  <symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+  <symbol id="moon" viewBox="0 0 24 24"><path d="M20.7 14a9 9 0 0 1-10.7-10.7A9 9 0 1 0 20.7 14Z"/></symbol>
+  <symbol id="auto" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></symbol>
+  <symbol id="menu-icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+</svg>
+<a class="button skip" href="#main">Skip to content</a>
+<header class="header">
+  <nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true">✦</span>EMERQE</a>
+    <div class="links" id="nav-links">
+      <a href="#features">Features</a><a href="#integrations">Integrations</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><button class="login mobile-login" type="button" data-login>Log in</button>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-button" id="theme" type="button" aria-label="Theme: system. Switch to light mode" title="Theme: system"><svg class="icon" aria-hidden="true"><use href="#auto"/></svg></button>
+      <button class="login" type="button" data-login>Log in</button>
+      <a class="button small" href="#pricing">Get started</a>
+      <button class="icon-button menu" id="menu" type="button" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#menu-icon"/></svg></button>
+    </div>
+  </nav>
+</header>
+<main id="main">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="kicker">AI automation for creators &amp; teams</p>
+        <h1>Make time for <span>what matters.</span></h1>
+        <p>Connect the apps you already use and let EMERQE handle the work you repeat.</p>
+        <div class="actions"><a class="button" href="#pricing">Get started</a><a class="button secondary" href="#workflow">See it in action</a></div>
+      </div>
+      <div class="canvas" id="workflow">
+        <div class="panel">
+          <div class="panel-top"><span><span class="mark" aria-hidden="true">✦</span>Workflow builder</span><span class="sample">Interactive demo</span></div>
+          <div class="panel-body">
+            <p class="panel-caption">Creator workflow</p>
+            <h2 class="panel-title">Turn uploads into updates</h2>
+            <div class="flow"><span class="app-icon"><svg aria-hidden="true"><use href="#youtube"/></svg></span><span>New YouTube upload<small>Trigger</small></span></div>
+            <div class="connector" aria-hidden="true"></div>
+            <div class="flow"><span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg></span><span>Write a short recap<small>EMERQE AI</small></span></div>
+            <div class="connector" aria-hidden="true"></div>
+            <div class="flow"><span class="app-icon"><svg aria-hidden="true"><use href="#gmail"/></svg></span><span>Create a Gmail draft<small>Ready for your review</small></span></div>
+            <div class="panel-bottom"><button type="button" class="button secondary small" id="run">Run example</button><span class="run-status" id="run-status" role="status">Ready to run</span></div>
+            <details id="sample-draft" hidden><summary>Read the sample draft</summary><p><strong>Subject:</strong> A simpler way to plan your next video</p><p>This week’s video walks through a three-part filming plan: outline the opening, batch your shots, and leave room for a second take.</p></details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="integrations" id="integrations" aria-label="Integrations">
+    <div class="wrap">
+      <p>Works with the apps you already use</p>
+      <div class="app-grid reveal">
+        <span class="integration" style="--i:0"><span class="app-icon"><svg aria-hidden="true"><use href="#gmail"/></svg></span>Gmail</span>
+        <span class="integration" style="--i:1"><span class="app-icon"><svg aria-hidden="true"><use href="#youtube"/></svg></span>YouTube</span>
+        <span class="integration" style="--i:2"><span class="app-icon"><svg aria-hidden="true"><use href="#instagram"/></svg></span>Instagram</span>
+        <span class="integration" style="--i:3"><span class="app-icon"><svg aria-hidden="true"><use href="#outlook"/></svg></span>Outlook</span>
+        <span class="integration" style="--i:4"><span class="app-icon" aria-hidden="true">+</span>More apps</span>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section" id="features">
+    <div class="heading reveal"><p class="kicker">What you can automate</p><h2>Take repeat work off your list.</h2><p>Start with something you do every week. Give EMERQE the steps and decide where you want to review the result.</p></div>
+    <div class="feature-grid">
+      <article class="card reveal"><div class="feature-head"><span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#video"/></svg></span><span class="audience">For creators</span></div><h3>Get more out of every upload</h3><p>Turn a new YouTube video into an Instagram caption and a newsletter draft while the details are fresh.</p></article>
+      <article class="card reveal"><div class="feature-head"><span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#mail"/></svg></span><span class="audience">For creators</span></div><h3>Keep track of sponsor requests</h3><p>Pull the brief, budget, and deadline from incoming emails so you can decide which deals are worth a follow-up.</p></article>
+      <article class="card reveal"><div class="feature-head"><span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#link"/></svg></span><span class="audience">For businesses</span></div><h3>Give inquiries a clear next step</h3><p>Sort inbound requests by topic and prepare a reply for the person handling each one.</p></article>
+      <article class="card reveal"><div class="feature-head"><span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#chart"/></svg></span><span class="audience">For businesses</span></div><h3>Pull together the weekly update</h3><p>Summarize recent activity into one draft your team can review before sending it around.</p></article>
+    </div>
+  </section>
+  <section class="band" id="how">
+    <div class="wrap section">
+      <div class="heading reveal"><p class="kicker">How it works</p><h2>From one app to the next.</h2></div>
+      <div class="steps">
+        <article class="step reveal"><span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#link"/></svg></span><h3>Connect</h3><p>Choose the apps that hold the information your workflow needs.</p></article>
+        <article class="step reveal"><span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg></span><h3>Automate</h3><p>Set a trigger and tell EMERQE what to do. Try the workflow on a sample first.</p></article>
+        <article class="step reveal"><span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#chart"/></svg></span><h3>Grow</h3><p>Review what comes out, refine your instructions, then put the next recurring task on autopilot.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section" aria-labelledby="outcomes">
+    <div class="heading reveal"><p class="kicker">Example outcomes</p><h2 id="outcomes">What a workflow can take off your plate.</h2><p>Illustrative scenarios for a creator and a small team.</p></div>
+    <div class="proof-grid">
+      <article class="reveal"><strong class="metric">1 → 2</strong><h3>One upload, two drafts</h3><blockquote>“When I upload a video, prepare a newsletter teaser and an Instagram caption for me to review.”<cite>Sample creator workflow</cite></blockquote></article>
+      <article class="reveal"><strong class="metric">5 → 1</strong><h3>Five threads, one handoff</h3><blockquote>“Summarize five open customer threads into a handoff with the next action for each.”<cite>Sample team workflow</cite></blockquote></article>
+    </div>
+  </section>
+  <section class="band" id="pricing">
+    <div class="wrap section">
+      <div class="heading reveal"><p class="kicker">Pricing preview</p><h2>Pick a starting point.</h2><p>Illustrative plans and prices for individuals and teams.</p></div>
+      <div class="plans">
+        <article class="reveal"><h3>Starter</h3><p>Try your first recurring workflow.</p><div class="price">$0 <small>/ month</small></div><ul><li>1 active workflow</li><li>50 runs per month</li><li>Draft review</li></ul><button type="button" class="button secondary" data-plan="Starter">Explore Starter</button></article>
+        <article class="featured reveal"><h3>Creator</h3><p>Keep up with publishing and partnerships.</p><div class="price">$19 <small>/ month</small></div><ul><li>10 active workflows</li><li>1,000 runs per month</li><li>AI drafting and summaries</li></ul><button type="button" class="button" data-plan="Creator">Explore Creator</button></article>
+        <article class="reveal"><h3>Business</h3><p>Share repeatable processes across a team.</p><div class="price">$49 <small>/ month</small></div><ul><li>25 active workflows</li><li>5,000 runs per month</li><li>Shared workspace</li></ul><button type="button" class="button secondary" data-plan="Business">Explore Business</button></article>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section faq" id="faq">
+    <div class="heading reveal"><p class="kicker">FAQ</p><h2>Good to know.</h2></div>
+    <div class="reveal">
+      <details><summary>What is a workflow?</summary><p>A workflow starts when something happens in a connected app, such as a new YouTube upload. EMERQE then carries out the steps you’ve defined, such as writing a recap and saving a draft.</p></details>
+      <details><summary>Which apps can I connect?</summary><p>EMERQE is designed for apps such as Gmail, YouTube, Instagram, and Outlook. The available triggers and actions depend on the app.</p></details>
+      <details><summary>Can I review what AI writes?</summary><p>Yes. The example workflow saves a Gmail draft so you can read and edit it before sending.</p></details>
+      <details><summary>What happens when I run the demo?</summary><p>The demo simulates the workflow in your browser using sample data. It requires no account and sends no messages.</p></details>
+    </div>
+  </section>
+  <section class="wrap cta reveal"><h2>Start with one task.</h2><p>Try a workflow that turns a video upload into a draft you can review.</p><a class="button" href="#workflow">Try the workflow demo</a></section>
+</main>
+<footer class="footer">
+  <div class="wrap"><a class="brand" href="#top"><span class="mark" aria-hidden="true">✦</span>EMERQE</a><div class="footer-links"><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><button class="login" type="button" data-login>Log in</button></div><p>© 2026 EMERQE</p></div>
+</footer>
+<dialog id="preview" aria-labelledby="preview-title">
+  <div class="dialog-head"><h3 id="preview-title"></h3><form method="dialog"><button class="icon-button" aria-label="Close" autofocus>✕</button></form></div>
+  <p id="preview-copy"></p>
+  <a class="button" href="#workflow" id="preview-demo">Try the workflow demo</a>
+</dialog>
+<script>
+const root = document.documentElement;
+const themeButton = document.querySelector('#theme');
+const modes = ['system', 'light', 'dark'];
+function syncThemeButton() {
+  const mode = root.dataset.theme || 'system';
+  const next = modes[(modes.indexOf(mode) + 1) % modes.length];
+  themeButton.title = 'Theme: ' + mode;
+  themeButton.setAttribute('aria-label', 'Theme: ' + mode + '. Switch to ' + next + ' mode');
+  themeButton.querySelector('use').setAttribute('href', {system:'#auto', light:'#sun', dark:'#moon'}[mode]);
+  return next;
+}
+syncThemeButton();
+themeButton.addEventListener('click', () => {
+  const next = syncThemeButton();
+  if (next === 'system') delete root.dataset.theme;
+  else root.dataset.theme = next;
+  try { localStorage.setItem('emerqe-theme', next); } catch {}
+  syncThemeButton();
+});
+
+const menu = document.querySelector('#menu');
+const links = document.querySelector('#nav-links');
+function setMenu(open) {
+  links.classList.toggle('open', open);
+  menu.setAttribute('aria-expanded', String(open));
+}
+menu.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+links.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && links.classList.contains('open')) {
+    setMenu(false);
+    menu.focus();
+  }
+});
+
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('seen');
+        observer.unobserve(entry.target);
+      }
+    }
+  }, {threshold: .09});
+  root.classList.add('motion');
+  document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+}
+
+const canvas = document.querySelector('.canvas');
+let frame = 0;
+function drift() {
+  frame = 0;
+  const offset = reducedMotion.matches ? 0 : Math.min(window.scrollY * .075, 16);
+  canvas.style.setProperty('--drift', offset + 'px');
+}
+window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(drift); }, {passive:true});
+reducedMotion.addEventListener('change', drift);
+drift();
+
+const run = document.querySelector('#run');
+const status = document.querySelector('#run-status');
+const rows = document.querySelectorAll('.flow');
+const sampleDraft = document.querySelector('#sample-draft');
+run.addEventListener('click', () => {
+  run.disabled = true;
+  sampleDraft.hidden = true;
+  sampleDraft.open = false;
+  status.textContent = 'Running example…';
+  rows.forEach(row => row.classList.add('running'));
+  setTimeout(() => {
+    rows.forEach(row => row.classList.remove('running'));
+    status.textContent = 'Sample draft created';
+    sampleDraft.hidden = false;
+    run.textContent = 'Run again';
+    run.disabled = false;
+  }, reducedMotion.matches ? 0 : 1100);
+});
+
+const preview = document.querySelector('#preview');
+const previewTitle = document.querySelector('#preview-title');
+const previewCopy = document.querySelector('#preview-copy');
+const previewDemo = document.querySelector('#preview-demo');
+document.querySelectorAll('[data-plan], [data-login]').forEach(button => {
+  button.addEventListener('click', () => {
+    const plan = button.dataset.plan;
+    previewTitle.textContent = plan ? plan + ' plan preview' : 'Log in';
+    previewCopy.textContent = plan
+      ? 'This sample plan is part of the pricing preview. You can try an example workflow without a subscription.'
+      : 'Account access is unavailable in this preview. You can still try the interactive workflow demo.';
+    if (button.classList.contains('mobile-login')) {
+      setMenu(false);
+      menu.focus();
+    }
+    preview.showModal();
+  });
+});
+previewDemo.addEventListener('click', () => preview.close());
+</script>
+</body>
+</html>
